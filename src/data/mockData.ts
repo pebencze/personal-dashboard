@@ -1,4 +1,4 @@
-const transactions = [
+export const transactions = [
   {
     "id": 1,
     "date": "2025-10-09",

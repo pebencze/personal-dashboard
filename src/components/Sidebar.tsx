@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import { TableOfContents } from "lucide-react"
 import {CircleX } from "lucide-react"
-
+import Maincontent from "./Maincontent"
 
 function Sidebar(){
     const sidebarRef = useRef<HTMLDivElement>(null)
@@ -23,7 +23,7 @@ function Sidebar(){
     }
     
     const onMouseDrag = (event: MouseEvent) => {
-        if(!isBeingResizedRef.current) return
+        if(!isBeingResizedRef.current || isCollapsed) return
         
         let newWidth = event.clientX
         if (newWidth < 240) newWidth = 240
@@ -31,7 +31,7 @@ function Sidebar(){
         
         if (sidebarRef.current && contentRef.current) {
             sidebarRef.current.style.width = `${newWidth}px`
-            // contentRef.current.style.width = `calc(100% - ${newWidth}px)`
+            contentRef.current.style.width = `calc(100% - ${newWidth}px)`
         }        
     }
     
@@ -59,7 +59,7 @@ function Sidebar(){
             setIsCollapsed(true)
 
             sidebarRef.current.style.width = "50px"
-            // contentRef.current.style.width = "100%"
+            contentRef.current.style.width = "100%"
             // contentRef.current.style.marginLeft = "50px"
         }
         setTimeout(() => setIsBeingCollapsed(false), 500)
@@ -73,7 +73,7 @@ function Sidebar(){
                 className={`${
                     (isBeingReset || isBeingCollapsed) && "transition-all duration-500 ease-out"
                 }
-                flex flex-col gap-4 overflow-y-scroll relative shadow rounded-r-lg bg-slate-200 p-4 z-10 w-[240px] group/sidebar h-screen`}
+                flex flex-col gap-4 overflow-y-scroll relative shadow  bg-slate-200 p-4 z-10 w-[240px] group/sidebar `}
             >
                 <div className="flex justify-between">
                     <button onClick={onResetWidth} className="">
@@ -88,9 +88,9 @@ function Sidebar(){
                 </div>
                 <div
                     onMouseDown={onDragResize} 
-                    className="absolute top-0 right-0 cursor-ew-resize w-[4px] bg-slate-200 opacity-0 group-hover/sidebar:opacity-100 transition-all h-full"
+                    className="absolute top-0 right-0 cursor-ew-resize w-[4px] bg-slate-300 opacity-0 group-hover/sidebar:opacity-100 transition-all h-full"
                 ></div>
-                <div className={`${isCollapsed && "hidden"} flex flex-col gap-4`}>
+                <div className={`${isCollapsed && "hidden"} flex flex-col gap-4 items-center`}>
                     <a href="#">Overview</a>
                     <a href="#">Transactions</a>
                     <a href="#">Category</a>
@@ -99,10 +99,7 @@ function Sidebar(){
             </div>
             
             {/* main content */}
-            <div ref={contentRef} className="p-4 w-full">
-                <h1>Dashboard</h1>
-                Main Content here hello
-            </div>
+            <Maincontent ref={contentRef}/>
 
         </div>
         </>
