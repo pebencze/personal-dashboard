@@ -10,6 +10,7 @@ function Sidebar(){
 
     const [isBeingReset, setIsBeingReset] = useState(false)
     const [isBeingCollapsed, setIsBeingCollapsed] = useState(false)
+    const [isCollapsed, setIsCollapsed] = useState(false)
 
     
     const onDragResize = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -29,11 +30,8 @@ function Sidebar(){
         if (newWidth > 480) newWidth = 480
         
         if (sidebarRef.current && contentRef.current) {
-            // modify styles if both sidebar and content exist
             sidebarRef.current.style.width = `${newWidth}px`
-            contentRef.current.style.width = `${newWidth}px`
             // contentRef.current.style.width = `calc(100% - ${newWidth}px)`
-            
         }        
     }
     
@@ -46,9 +44,10 @@ function Sidebar(){
     const onResetWidth = () => {
         if (sidebarRef.current && contentRef.current) {
             setIsBeingReset(true)
+            setIsCollapsed(false)
 
             sidebarRef.current.style.width = "240px"
-            contentRef.current.style.width = "240px"
+            // contentRef.current.style.width = "240px"
         }
         setTimeout(() => setIsBeingReset(false), 500)
 
@@ -57,42 +56,55 @@ function Sidebar(){
     const onCollapse = () => {
         if (sidebarRef.current && contentRef.current) {
             setIsBeingCollapsed(true)
+            setIsCollapsed(true)
 
-            sidebarRef.current.style.width = "0px"
-            contentRef.current.style.width = "0px"
+            sidebarRef.current.style.width = "50px"
+            // contentRef.current.style.width = "100%"
+            // contentRef.current.style.marginLeft = "50px"
         }
         setTimeout(() => setIsBeingCollapsed(false), 500)
     }
     
     return (
         <>
+        <div className="flex ">
             <div 
                 ref={sidebarRef}
                 className={`${
                     (isBeingReset || isBeingCollapsed) && "transition-all duration-500 ease-out"
-                } flex flex-col gap-4 overflow-y-scroll relative border-r bg-slate-100 p-4 z-10 w-[240px] group/sidebar`}
+                }
+                flex flex-col gap-4 overflow-y-scroll relative shadow rounded-r-lg bg-slate-200 p-4 z-10 w-[240px] group/sidebar h-screen`}
             >
-                <button 
-                    onClick={onCollapse} 
-                    className="opacity-0 transition-all group-hover/sidebar:opacity-100"
-                >
-                    <CircleX />
-                </button>
+                <div className="flex justify-between">
+                    <button onClick={onResetWidth} className="">
+                        <TableOfContents />
+                    </button>
+                    <button 
+                        onClick={onCollapse} 
+                        className="opacity-0 transition-all group-hover/sidebar:opacity-100"
+                    >
+                        <CircleX className={`${isCollapsed && "hidden"} hover:cursor-pointer`}/>
+                    </button>
+                </div>
                 <div
                     onMouseDown={onDragResize} 
-                    className="absolute top-0 right-0 cursor-ew-resize w-[2px] bg-slate-200 opacity-0 group-hover/sidebar:opacity-100 transition-all h-full"
+                    className="absolute top-0 right-0 cursor-ew-resize w-[4px] bg-slate-200 opacity-0 group-hover/sidebar:opacity-100 transition-all h-full"
                 ></div>
+                <div className={`${isCollapsed && "hidden"} flex flex-col gap-4`}>
+                    <a href="#">Overview</a>
+                    <a href="#">Transactions</a>
+                    <a href="#">Category</a>
+                    <a href="#">...</a>
+                </div>
             </div>
-            <button onClick={onResetWidth} className="">
-                <TableOfContents />
-            </button>
+            
             {/* main content */}
-            <div ref={contentRef} className="flex flex-col gap-4 overflow-y-scroll border-r bg-slate-100 p-4 z-10 w-[240px] h-screen">
-                <p>Page 1</p>
-                <p>Page 2</p>
-                <p>Page 3</p>
-                <p>Page 4</p>
+            <div ref={contentRef} className="p-4 w-full">
+                <h1>Dashboard</h1>
+                Main Content here hello
             </div>
+
+        </div>
         </>
     )
     
