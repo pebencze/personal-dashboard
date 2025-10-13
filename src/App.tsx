@@ -1,9 +1,15 @@
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
-import Dashboard from './pages/Dashboard'
+import DashboardLayout from './components/layout/DashboardLayout'
+import { StrictMode } from 'react'
 
 function App() {
  return (
-  <Dashboard />
+    <StrictMode>
+        <BrowserRouter>
+            <DashboardLayout />
+        </BrowserRouter>
+    </StrictMode>
  )
 }
 

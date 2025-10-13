@@ -1,9 +1,12 @@
 
 import React, { useRef, useState } from "react"
-import Sidebar from "../components/Sidebar"
-import Maincontent from "../components/Maincontent"
+import { Routes, Route } from "react-router-dom"
+import Sidebar from "../Sidebar"
+import Card from "../Card"
+import TransactionsTable from "../TransactionsTable"
+import { transactions } from "../../data/mockData"
 
-function Dashboard(){
+function DashboardLayout(){
     const sidebarRef = useRef<HTMLDivElement>(null)
     const contentRef = useRef<HTMLDivElement>(null)
     const isBeingResizedRef = useRef<boolean>(false)
@@ -68,12 +71,16 @@ function Dashboard(){
     return (
         <div className="flex">
             <Sidebar ref={sidebarRef} isBeingReset={isBeingReset} isBeingCollapsed={isBeingCollapsed} isCollapsed={isCollapsed} onResetWidth={onResetWidth} onCollapse={onCollapse} onDragResize={onDragResize}/>
-            <Routes >
-                <Maincontent ref={contentRef}/>
-
-            </Routes>
+            <div ref={contentRef} className="p-4 w-screen bg-slate-100">
+                <h1 className="text-3xl mb-4">Personal Finance Tracker</h1>
+                <Routes >
+                    <Route path="/" element={<Card title="Overview">Content here</Card>}></Route>
+                    <Route path="/transactions" element={<Card title="Transactions"><TransactionsTable transactions={transactions}/></Card>}></Route>
+                    <Route path="/category-breakdown" element={<Card title="Categories">Content here</Card>}></Route>
+                </Routes>
+            </div>
         </div>
     )
 }
 
-export default Dashboard
+export default DashboardLayout

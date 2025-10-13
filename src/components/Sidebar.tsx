@@ -1,6 +1,8 @@
 import { TableOfContents } from "lucide-react"
 import {CircleX } from "lucide-react"
 import React from "react"
+import { Link } from "react-router-dom"
+
 
 interface SideBarProps{
     isBeingReset: boolean;
@@ -36,10 +38,10 @@ const Sidebar = React.forwardRef<HTMLDivElement, SideBarProps>(({isBeingReset, i
                 className="absolute top-0 right-0 cursor-ew-resize w-[4px] bg-slate-300 opacity-0 group-hover/sidebar:opacity-100 transition-all h-full"
             ></div>
             <div className={`${isCollapsed && "hidden"} flex flex-col gap-4 items-center mt-6`}>
-                <a className="hover:underline" href="#">Overview</a>
-                <a className="hover:underline" href="#">Transactions</a>
-                <a className="hover:underline" href="#">Category</a>
-                <a href="#">...</a>
+                <Link className="hover:underline" to="/">Overview</Link>
+                <Link className="hover:underline" to="/transactions">Transactions</Link>
+                <Link className="hover:underline" to="/category-breakdown">Category Breakdown</Link>
+                <Link to="#">...</Link>
             </div>
         </div>        
     )   
