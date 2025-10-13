@@ -7,7 +7,7 @@ interface CardProps {
 
 function Card({ title, children }: CardProps) {
     return (
-        <div className="bg-white w-full h-screen rounded-lg shadow p-4">
+        <div className="bg-white w-full h-screen rounded-lg shadow p-4 overflow-y-scroll">
             <h2 className="font-bold text-lg mb-4">{title}</h2>
             {children}
         </div>

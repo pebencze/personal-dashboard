@@ -1,6 +1,7 @@
 import type { Transaction } from '../types/types';
 import { useState } from 'react';
 import { ArrowUpDown, ArrowDownUp } from 'lucide-react';
+import CategoryCard from './CategoryCard';
 
 interface TransactionsTableProps {
     transactions: Transaction[];
@@ -9,31 +10,46 @@ interface TransactionsTableProps {
 function TransactionsTable({ transactions }: TransactionsTableProps) {
     // const amounts = transactions.map((transaction) => transaction.amount)
     const [sorted, setSorted] = useState(transactions)
-    const [isAscending, setIsAscending] = useState(false)
+    const [isAscendingAmount, setIsAscendingAmount] = useState(false)
+    const [isAscendingDate, setIsAscendingDate] = useState(false)
 
-    const handleSort = () => {
+
+    const handleSort = (columnName: string) => {
         const listData = [...sorted]
-        if (isAscending) {
-            listData.sort((a, b) => a.amount - b.amount)
-        } else {
-            listData.sort((a, b) => b.amount - a.amount)
+        if (columnName === 'date'){
+            if (isAscendingDate) {
+                listData.sort((a, b) => a.date.localeCompare(b.date))
+            } else {
+                listData.sort((a, b) => b.date.localeCompare(a.date))
+            }
+            setIsAscendingDate(!isAscendingDate)
+        } 
+        if (columnName === 'amount') {
+            if (isAscendingAmount) {
+                listData.sort((a, b) => a.amount - b.amount)
+            } else {
+                listData.sort((a, b) => b.amount - a.amount)
+            }
+            setIsAscendingAmount(!isAscendingAmount)
         }
         setSorted(listData)
-        setIsAscending(!isAscending)
     }
 
     return (
        <table className="w-full text-left">
             <thead>
                 <tr>
-                    <th>Date</th>
+                    <th onClick={() => handleSort("date")}
+                        className="flex gap-2">
+                        Date
+                        {isAscendingAmount ? <ArrowDownUp className="w-4" /> : <ArrowUpDown className="w-4" />}
+                    </th>
                     <th>Description</th>
                     <th>Category</th>
-                    <th 
-                        onClick={handleSort} 
+                    <th onClick={() => handleSort("amount")} 
                         className="flex gap-2">
                         Amount
-                        {isAscending ? <ArrowDownUp className="w-4" /> : <ArrowUpDown className="w-4" />}
+                        {isAscendingAmount ? <ArrowDownUp className="w-4" /> : <ArrowUpDown className="w-4" />}
                     </th>
                 </tr>
             </thead>
@@ -42,7 +58,7 @@ function TransactionsTable({ transactions }: TransactionsTableProps) {
                     <tr key={transaction.id} className='border-y border-slate-200 hover:bg-blue-100'>
                         <td>{transaction.date}</td>
                         <td>{transaction.description}</td>
-                        <td>{transaction.category}</td>
+                        <td>{<CategoryCard category={transaction.category}/>}</td>
                         <td className={transaction.amount < 0 ? 'text-blue-500' : 'text-emerald-500'}>{transaction.amount}</td>
                     </tr>
                 )}

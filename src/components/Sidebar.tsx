@@ -67,7 +67,7 @@ function Sidebar(){
     
     return (
         <>
-        <div className="flex ">
+        <div className="flex">
             <div 
                 ref={sidebarRef}
                 className={`${
@@ -90,10 +90,10 @@ function Sidebar(){
                     onMouseDown={onDragResize} 
                     className="absolute top-0 right-0 cursor-ew-resize w-[4px] bg-slate-300 opacity-0 group-hover/sidebar:opacity-100 transition-all h-full"
                 ></div>
-                <div className={`${isCollapsed && "hidden"} flex flex-col gap-4 items-center`}>
-                    <a href="#">Overview</a>
-                    <a href="#">Transactions</a>
-                    <a href="#">Category</a>
+                <div className={`${isCollapsed && "hidden"} flex flex-col gap-4 items-center mt-6`}>
+                    <a className="hover:underline" href="#">Overview</a>
+                    <a className="hover:underline" href="#">Transactions</a>
+                    <a className="hover:underline" href="#">Category</a>
                     <a href="#">...</a>
                 </div>
             </div>
