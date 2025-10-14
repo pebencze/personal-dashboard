@@ -17,5 +17,11 @@ export interface ExpenseCategory {
     category: string;
     budget: number;
     amountSpent: number;
-    amountLeft: string;
+    amountLeft: number;
+}
+
+export interface Budget {
+    budget: number;
+    amountSpent: number;
+    amountLeft: number;
 }

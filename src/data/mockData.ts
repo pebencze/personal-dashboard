@@ -183,3 +183,82 @@ export const transactions = [
     "amount": -45.90
   },
 ]
+
+export const monthlyBudget: Record<string, number> = {
+    "Groceries": 300,
+    "Entertainment": 100,
+    "Health & Fitness": 50,
+    "Shopping": 50, 
+    "Food & Drinks": 100,
+    "Transportation": 60,
+    "Rent": 500,
+    "Other": 0,
+}
+
+export const expenseCategories: Array<string> = [
+    "Groceries",
+    "Entertainment",
+    "Health & Fitness",
+    "Shopping",
+    "Food & Drinks",
+    "Transportation",
+    "Rent",
+    "Other"
+]
+
+// const categories = [
+//   {
+//     "category": "Groceries",
+//     "budget": 300,
+//     "amountSpent": 125.50,
+//     "amountLeft": "174.50"
+//   },
+//   {
+//     "category": "Entertainment",
+//     "budget": 200,
+//     "amountSpent": 240,
+//     "amountLeft": "-40.00"
+//   },
+//   {
+//     "category": "Health & Fitness",
+//     "budget": 100,
+//     "amountSpent": 73.20,
+//     "amountLeft": "26.80"
+//   },
+//   {
+//     "category": "Transportation",
+//     "budget": 100,
+//     "amountSpent": 117.15,
+//     "amountLeft": "-17.15"
+//   },
+//   {
+//     "category": "Rent",
+//     "budget": 600,
+//     "amountSpent": 500.00,
+//     "amountLeft": "100.00"
+//   },
+//   {
+//     "category": "Shopping",
+//     "budget": 150,
+//     "amountSpent": 200.00,
+//     "amountLeft": "-50.00"
+//   },
+//   {
+//     "category": "Food & Drinks",
+//     "budget": 120,
+//     "amountSpent": 71.00,
+//     "amountLeft": "49.00"
+//   },
+//   {
+//     "category": "Travel",
+//     "budget": 300,
+//     "amountSpent": 250.00,
+//     "amountLeft": "50.00"
+//   },
+//   {
+//     "category": "Other",
+//     "budget": 75,
+//     "amountSpent": 50.00,
+//     "amountLeft": "25.00"
+//   }
+// ]

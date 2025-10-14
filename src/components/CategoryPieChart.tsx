@@ -2,78 +2,22 @@ import { Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 import { categoryColorsHex, defaultColorHex } from '../lib/categoryColors'
 import type { ExpenseCategory } from '../types/types'
 
-const categories = [
-  {
-    "category": "Groceries",
-    "budget": 300,
-    "amountSpent": 125.50,
-    "amountLeft": "174.50"
-  },
-  {
-    "category": "Entertainment",
-    "budget": 200,
-    "amountSpent": 240,
-    "amountLeft": "-40.00"
-  },
-  {
-    "category": "Health & Fitness",
-    "budget": 100,
-    "amountSpent": 73.20,
-    "amountLeft": "26.80"
-  },
-  {
-    "category": "Transportation",
-    "budget": 100,
-    "amountSpent": 117.15,
-    "amountLeft": "-17.15"
-  },
-  {
-    "category": "Rent",
-    "budget": 600,
-    "amountSpent": 500.00,
-    "amountLeft": "100.00"
-  },
-  {
-    "category": "Shopping",
-    "budget": 150,
-    "amountSpent": 200.00,
-    "amountLeft": "-50.00"
-  },
-  {
-    "category": "Food & Drinks",
-    "budget": 120,
-    "amountSpent": 71.00,
-    "amountLeft": "49.00"
-  },
-  {
-    "category": "Travel",
-    "budget": 300,
-    "amountSpent": 250.00,
-    "amountLeft": "50.00"
-  },
-  {
-    "category": "Other",
-    "budget": 75,
-    "amountSpent": 50.00,
-    "amountLeft": "25.00"
-  }
-]
+function CategoryPieChart({categories} : {categories: ExpenseCategory[]}) {
 
-function CategoryPieChart() {
-
-  const getChartData =(categories: ExpenseCategory[]) => {
+  const getChartData =(expenseItems: ExpenseCategory[]) => {
     let data: { name: string; amountSpent: number; fill: string }[] = []
-    categories.forEach((category) => {
+    expenseItems.forEach((item) => {
       data.push({
-        name: category.category,
-        amountSpent: category.amountSpent,
-        fill: categoryColorsHex.get(category.category) || defaultColorHex
+        name: item.category,
+        amountSpent: Math.abs(item.amountSpent),
+        fill: categoryColorsHex.get(item.category) || defaultColorHex
       })
     })
     return data
   }
 
   const chartData = getChartData(categories)
+  console.log(chartData)
 
   return (
     <ResponsiveContainer width="100%" height="100%">

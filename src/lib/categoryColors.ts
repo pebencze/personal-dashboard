@@ -11,15 +11,15 @@ export const categoryColorsHex = new Map<string, string>([
 ]);
 
 export const categoryColors = new Map<string, string>([
-    ["Groceries", "fuchsia-300"],
-    ["Entertainment", "cyan-300"],
-    ["Income", "emerald-300"],
-    ["Health & Fitness", "pink-300"],
-    ["Shopping", "orange-300"],
-    ["Food & Drinks", "yellow-300"],
-    ["Transportation", "indigo-300"],
-    ["Rent", "red-300"],
-    ["Other", "slate-300"]
+    ["Groceries", "bg-fuchsia-300"],
+    ["Entertainment", "bg-cyan-300"],
+    ["Income", "bg-emerald-300"],
+    ["Health & Fitness", "bg-pink-300"],
+    ["Shopping", "bg-orange-300"],
+    ["Food & Drinks", "bg-yellow-300"],
+    ["Transportation", "bg-indigo-300"],
+    ["Rent", "bg-red-300"],
+    ["Other", "bg-slate-300"]
 ]);
 
 
