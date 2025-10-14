@@ -5,6 +5,8 @@ import Sidebar from "../Sidebar"
 import Card from "../Card"
 import TransactionsTable from "../TransactionsTable"
 import { transactions } from "../../data/mockData"
+import CategoryBreakdown from "../CategoryBreakdown"
+
 
 function DashboardLayout(){
     const sidebarRef = useRef<HTMLDivElement>(null)
@@ -76,7 +78,7 @@ function DashboardLayout(){
                 <Routes >
                     <Route path="/" element={<Card title="Overview">Content here</Card>}></Route>
                     <Route path="/transactions" element={<Card title="Transactions"><TransactionsTable transactions={transactions}/></Card>}></Route>
-                    <Route path="/category-breakdown" element={<Card title="Categories">Content here</Card>}></Route>
+                    <Route path="/category-breakdown" element={<CategoryBreakdown />}></Route>
                 </Routes>
             </div>
         </div>

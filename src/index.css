@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+:root {
+  /* Define CSS variables for each category */
+  --color-groceries: #f4a8ff;
+  --color-entertainment: #53eafd;
+  --color-income: #5ee9b5;
+  --color-health-fitness: #fda5d5;
+  --color-shopping: #ffb86a;
+  --color-food-drinks: #ffdf20;
+  --color-transportation: #a3b3ff;
+  --color-rent: #ffa2a2;
+  --color-other: #cad5e2;
+}

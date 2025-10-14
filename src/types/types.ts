@@ -15,8 +15,7 @@ export interface Transaction {
 
 export interface ExpenseCategory {
     category: string;
-    month: string;
-    amount: number;
     budget: number;
-    onBudget?: boolean;
+    amountSpent: number;
+    amountLeft: string;
 }
