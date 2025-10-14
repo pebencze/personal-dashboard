@@ -1,11 +1,11 @@
 
 import CategoryPieChart from "./CategoryPieChart"
 import Card from "./Card"
-import { transactions, monthlyBudget, expenseCategories } from "../data/mockData"
+import { monthlyBudget, expenseCategories } from "../data/mockData"
 import type { ExpenseCategory, Transaction } from "../types/types"
 import CategoryTable from "./CategoryTable"
 
-function getCategories(): ExpenseCategory[] {
+function getCategories(transactions: Transaction[]): ExpenseCategory[] {
     let spendingsPerCategory = new Map<string, number>()
     
     transactions
@@ -35,8 +35,8 @@ function getCategories(): ExpenseCategory[] {
     return expenseCategoriesData
 }
 
-function CategoryBreakdown(){
-    const categories = getCategories()
+function CategoryBreakdown({transactions}: {transactions: Transaction[]}){
+    const categories = getCategories(transactions)
     console.log(categories)
 
     return(

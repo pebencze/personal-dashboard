@@ -182,6 +182,189 @@ export const transactions = [
     "category": "Transportation",
     "amount": -45.90
   },
+  {
+    "id": 31,
+    "date": "2025-09-09",
+    "description": "Weekly groceries",
+    "category": "Groceries",
+    "amount": -125.50
+  },
+  {
+    "id": 32,
+    "date": "2025-09-08",
+    "description": "Dinner with friends",
+    "category": "Entertainment",
+    "amount": -55.00
+  },
+  {
+    "id": 33,
+    "date": "2025-09-07",
+    "description": "Salary",
+    "category": "Income",
+    "amount": 2000.00
+  },
+  {
+    "id": 34,
+    "date": "2025-09-06",
+    "description": "Urban Sports Club",
+    "category": "Health & Fitness",
+    "amount": -15.20
+  },
+  {
+    "id": 35,
+    "date": "2025-09-05",
+    "description": "BVG ticket",
+    "category": "Transportation",
+    "amount": -55.75
+  },
+  {
+    "id": 36,
+    "date": "2025-09-04",
+    "description": "Monthly rent",
+    "category": "Rent",
+    "amount": -500.00
+  },
+  {
+    "id": 37,
+    "date": "2025-09-12",
+    "description": "Sneakers",
+    "category": "Shopping",
+    "amount": -100.00
+  },
+  {
+    "id": 38,
+    "date": "2025-09-11",
+    "description": "Lunch",
+    "category": "Food & Drinks",
+    "amount": -12.00
+  }
+  ,
+  {
+    "id": 39,
+    "date": "2025-09-11",
+    "description": "Lunch",
+    "category": "Food & Drinks",
+    "amount": -12.00
+  },
+  {
+    "id": 40,
+    "date": "2025-09-11",
+    "description": "Movies",
+    "category": "Entertainment",
+    "amount": -15.00
+  },
+  {
+    "id": 41,
+    "date": "2025-09-09",
+    "description": "Bouldering session",
+    "category": "Health & Fitness",
+    "amount": -10.00
+  },
+  {
+    "id": 42,
+    "date": "2025-09-08",
+    "description": "Dance workshop",
+    "category": "Entertainment",
+    "amount": -25.00
+  },
+  {
+    "id": 43,
+    "date": "2025-09-07",
+    "description": "Theatre tickets",
+    "category": "Entertainment",
+    "amount": -80.00
+  },
+  {
+    "id": 44,
+    "date": "2025-09-06",
+    "description": "New jacket",
+    "category": "Shopping",
+    "amount": -75.00
+  },
+  {
+    "id": 45,
+    "date": "2025-09-05",
+    "description": "Freelancing",
+    "category": "Income",
+    "amount": 150.00
+  },
+  {
+    "id": 46,
+    "date": "2025-09-04",
+    "description": "Coffee and pastry",
+    "category": "Food & Drinks",
+    "amount": -6.50
+  },
+  {
+    "id": 47,
+    "date": "2025-09-03",
+    "description": "Gasoline",
+    "category": "Transportation",
+    "amount": -40.00
+  },
+  {
+    "id": 48,
+    "date": "2025-09-02",
+    "description": "Flight to Lisbon",
+    "category": "Travel",
+    "amount": -250.00
+  },
+  {
+    "id": 49,
+    "date": "2025-09-01",
+    "description": "Yoga class",
+    "category": "Health & Fitness",
+    "amount": -18.00
+  },
+  {
+    "id": 50,
+    "date": "2025-09-30",
+    "description": "Uber ride",
+    "category": "Transportation",
+    "amount": -15.50
+  },
+  {
+    "id": 51,
+    "date": "2025-09-29",
+    "description": "Gym membership",
+    "category": "Health & Fitness",
+    "amount": -30.00
+  },
+  {
+    "id": 52,
+    "date": "2025-09-28",
+    "description": "Birthday gift",
+    "category": "Other",
+    "amount": -50.00
+  },
+  {
+    "id": 53,
+    "date": "2025-09-27",
+    "description": "Books",
+    "category": "Shopping",
+    "amount": -25.00
+  },
+  {
+    "id": 54,
+    "date": "2025-09-26",
+    "description": "Concert tickets",
+    "category": "Entertainment",
+    "amount": -65.00
+  },
+  {
+    "id": 55,
+    "date": "2025-09-25",
+    "description": "Restaurant bill",
+    "category": "Food & Drinks",
+    "amount": -40.50
+  },
+  {
+    "id": 56,
+    "date": "2025-09-10",
+    "description": "Train ticket to Hamburg",
+    "category": "Transportation",
+    "amount": -45.90
+  },
 ]
 
 export const monthlyBudget: Record<string, number> = {

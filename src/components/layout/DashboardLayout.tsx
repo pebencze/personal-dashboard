@@ -1,10 +1,10 @@
 
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useMemo } from "react"
 import { Routes, Route } from "react-router-dom"
+import { transactions } from "../../data/mockData"
 import Sidebar from "../Sidebar"
 import Card from "../Card"
 import TransactionsTable from "../TransactionsTable"
-import { transactions } from "../../data/mockData"
 import CategoryBreakdown from "../CategoryBreakdown"
 
 
@@ -17,7 +17,12 @@ function DashboardLayout(){
     const [isBeingCollapsed, setIsBeingCollapsed] = useState(false)
     const [isCollapsed, setIsCollapsed] = useState(false)
 
-    
+    const [selectedMonth, setSelectedMonth] = useState("2025-10")
+
+    const filteredTransactions = useMemo(() => {
+        return transactions.filter(t => t.date.startsWith(selectedMonth));
+    }, [selectedMonth])
+
     const onDragResize = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault()
         event.stopPropagation()
@@ -77,8 +82,8 @@ function DashboardLayout(){
                 <h1 className="text-3xl mb-4">Personal Finance Tracker</h1>
                 <Routes >
                     <Route path="/" element={<Card title="Overview">Content here</Card>}></Route>
-                    <Route path="/transactions" element={<Card title="Transactions"><TransactionsTable transactions={transactions}/></Card>}></Route>
-                    <Route path="/category-breakdown" element={<CategoryBreakdown />}></Route>
+                    <Route path="/transactions" element={<Card title="Transactions"><TransactionsTable transactions={filteredTransactions}/></Card>}></Route>
+                    <Route path="/category-breakdown" element={<CategoryBreakdown transactions={filteredTransactions}/>}></Route>
                 </Routes>
             </div>
         </div>
