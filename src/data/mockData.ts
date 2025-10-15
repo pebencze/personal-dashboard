@@ -389,6 +389,8 @@ export const expenseCategories: Array<string> = [
     "Other"
 ]
 
+export const availableMonths = ["2025-08", "2025-09", "2025-10"]
+
 // const categories = [
 //   {
 //     "category": "Groceries",
