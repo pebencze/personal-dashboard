@@ -4,6 +4,8 @@ import Card from "./Card"
 import { monthlyBudget, expenseCategories } from "../data/mockData"
 import type { ExpenseCategory, Transaction } from "../types/types"
 import CategoryTable from "./CategoryTable"
+import { transactions } from '../data/mockData';
+
 
 function getCategories(transactions: Transaction[]): ExpenseCategory[] {
     let spendingsPerCategory = new Map<string, number>()
@@ -35,7 +37,7 @@ function getCategories(transactions: Transaction[]): ExpenseCategory[] {
     return expenseCategoriesData
 }
 
-function CategoryBreakdown({transactions}: {transactions: Transaction[]}){
+function CategoryBreakdown(){
     const categories = getCategories(transactions)
     console.log(categories)
 

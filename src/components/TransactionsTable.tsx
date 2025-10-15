@@ -1,18 +1,16 @@
-import type { Transaction } from '../types/types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowUpDown, ArrowDownUp } from 'lucide-react';
 import CategoryCard from './CategoryCard';
+import type { Transaction } from '../types/types';
 
-interface TransactionsTableProps {
-    transactions: Transaction[];
-}
-
-function TransactionsTable({ transactions }: TransactionsTableProps) {
-    // const amounts = transactions.map((transaction) => transaction.amount)
+function TransactionsTable({transactions}: {transactions: Transaction[]}) {
     const [sorted, setSorted] = useState(transactions)
     const [isAscendingAmount, setIsAscendingAmount] = useState(false)
     const [isAscendingDate, setIsAscendingDate] = useState(false)
 
+    useEffect(() => {
+      setSorted(transactions);
+    }, [transactions]);
 
     const handleSort = (columnName: string) => {
         const listData = [...sorted]
@@ -33,6 +31,7 @@ function TransactionsTable({ transactions }: TransactionsTableProps) {
             setIsAscendingAmount(!isAscendingAmount)
         }
         setSorted(listData)
+        console.log("rerender")
     }
 
     return (
