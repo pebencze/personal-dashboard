@@ -73,7 +73,7 @@ function DashboardLayout(){
             <div ref={contentRef} className="p-4 w-screen bg-slate-100">
                 <h1 className="text-3xl mb-4">Personal Finance Tracker</h1>
                 <Routes >
-                    <Route path="/" element={<Card title="Overview">Content here</Card>}></Route>
+                    <Route index element={<Card title="Overview">Content here</Card>}></Route>
                     <Route path="/transactions" element={<TransactionsView />}></Route>
                     <Route path="/category-breakdown" element={<CategoryBreakdown />}></Route>
                 </Routes>

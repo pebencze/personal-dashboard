@@ -1,21 +1,29 @@
 import { FilterIcon } from "lucide-react";
-import { expenseCategories, availableMonths } from "../data/mockData"
 import { useState } from "react";
-
-const months = [...availableMonths, "All"]
-const categories = [...expenseCategories, "All"]
 
 interface FilterProps {
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-    selectedMonth: string;
-    selectedCategory: string;
+    handleClear: (event: React.MouseEvent<HTMLFormElement>) => void;
+    filterOptions: FilterOption[];
 }
 
-function Filter({handleSubmit, selectedMonth, selectedCategory}: FilterProps) {
+export interface FilterOption {
+    values: string[], //months
+    defaultValue: string, //selectedMonth, selectedCategory
+    name: string, //month
+    label: string, //Select a month:
+}
+
+function Filter({handleSubmit, handleClear, filterOptions}: FilterProps) {
     const [showForm, setShowForm] = useState(false)
 
     const handleFromSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         handleSubmit(event)
+        setShowForm(false)
+    }
+
+    const handleClearFilters = (event: React.MouseEvent<HTMLFormElement>) => {
+        handleClear(event)
         setShowForm(false)
     }
 
@@ -30,17 +38,21 @@ function Filter({handleSubmit, selectedMonth, selectedCategory}: FilterProps) {
                 </button>
             }
             {showForm &&
-                <form method="post" onSubmit={handleFromSubmit} className="absolute top-0 right-0 flex flex-col align-left bg-slate-200 opacity-95 p-4 rounded shadow z-20">
+                <form method="post" onSubmit={handleFromSubmit} onReset={handleClearFilters} className="absolute top-0 right-0 flex flex-col align-left bg-slate-200 opacity-95 p-4 rounded shadow z-20">
                     <h1>Filters</h1>
-                    <label htmlFor="month" className="text-gray-700 text-sm mt-2">Select a month:</label>
-                    <select name="month" id="month" defaultValue={selectedMonth} className="text-sm border border-gray-400 rounded">
-                        {months.map(month => <option key={month} value={month}>{month}</option>)}
-                    </select>
-                    <label htmlFor="month" className="text-gray-700 text-sm mt-2">Select a category:</label>
-                    <select name="category" id="category" defaultValue={selectedCategory} className="text-sm border border-gray-400 rounded">
-                        {categories.map(category => <option key={category} value={category}>{category}</option>)}
-                    </select>
+                    {filterOptions.map(filterOption => {
+                        const {values, defaultValue, name, label} = filterOption
+                        return (
+                            <>
+                                <label htmlFor={name} className="text-gray-700 text-sm mt-2">{label}</label>
+                                <select name={name} id={name} defaultValue={defaultValue} className="text-sm border border-gray-400 rounded">
+                                    {values.map(value => <option key={value} value={value}>{value}</option>)}
+                                </select>
+                            </>
+                        )}
+                    )}
                     <button type="submit" className="bg-blue-400 rounded font-bold text-sm mt-2">Apply filters</button>
+                    <button type="reset" className="bg-blue-400 rounded font-bold text-sm mt-2">Clear filters</button>
                 </form>
             }
         </>

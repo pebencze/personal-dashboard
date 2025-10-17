@@ -16,7 +16,7 @@ function CategoryTable({categories} : {categories: ExpenseCategory[]}) {
             </thead>
             <tbody>
                 {categories.map((category, index) => {
-                    const progressInPercent = (category.amountSpent / category.budget) * 100
+                    const progressInPercent = category.amountSpent === 0 ? 0 : ((category.amountSpent + Number.EPSILON) / category.budget) * 100
                     const color = category.amountLeft < 0 ? 'error' : category.amountLeft == 0 ? 'info' : 'success'
 
                     return (

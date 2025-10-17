@@ -4,8 +4,10 @@ import Card from "./Card"
 import { monthlyBudget, expenseCategories } from "../data/mockData"
 import type { ExpenseCategory, Transaction } from "../types/types"
 import CategoryTable from "./CategoryTable"
-import { transactions } from '../data/mockData';
-
+import { transactions, availableMonths } from '../data/mockData';
+import { useState, useMemo } from "react";
+import Filter from "./Filter";
+import type { FilterOption } from "./Filter";
 
 function getCategories(transactions: Transaction[]): ExpenseCategory[] {
     let spendingsPerCategory = new Map<string, number>()
@@ -33,16 +35,40 @@ function getCategories(transactions: Transaction[]): ExpenseCategory[] {
             amountLeft,
         }
     })
-
     return expenseCategoriesData
 }
 
 function CategoryBreakdown(){
-    const categories = getCategories(transactions)
-    console.log(categories)
+    const defaultMonth = availableMonths[availableMonths.length - 1];
+    const [selectedMonth, setSelectedMonth] = useState(defaultMonth)
+    const filteredTransactions = useMemo(() => {
+        const transactionCopy = [...transactions]
+        return transactionCopy.filter(t => t.date.startsWith(selectedMonth))
+    }, [selectedMonth])
+
+    const categories = getCategories(filteredTransactions)
+
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        setSelectedMonth(event.currentTarget.month.value)
+    }
+
+    function handleClear(event: React.MouseEvent<HTMLFormElement>) {
+        event.preventDefault()
+        setSelectedMonth(defaultMonth)
+    }
+
+    const filterOptions: FilterOption[] = [
+        {
+            values: availableMonths,
+            defaultValue: selectedMonth,
+            name: "month",
+            label: "Select a month:"
+        }
+    ]
 
     return(
-        <Card title="Categories">
+        <Card title="Categories" filter={<Filter handleSubmit={handleSubmit} handleClear={handleClear} filterOptions={filterOptions}/>}>
             <CategoryTable categories={categories} />
             <CategoryPieChart categories={categories} />
         </Card>
