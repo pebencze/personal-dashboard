@@ -37,7 +37,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SideBarProps>(({isBeingReset, i
                 onMouseDown={onDragResize} 
                 className="absolute top-0 right-0 cursor-ew-resize w-[4px] bg-slate-300 opacity-0 group-hover/sidebar:opacity-100 transition-all h-full"
             ></div>
-            <div className={`${isCollapsed && "hidden"} flex flex-col gap-4 items-center mt-6`}>
+            <div className={`${isCollapsed && "hidden"} flex flex-col gap-4 items-start mt-6`}>
                 <Link className="hover:underline" to="/">Overview</Link>
                 <Link className="hover:underline" to="/transactions">Transactions</Link>
                 <Link className="hover:underline" to="/category-breakdown">Category Breakdown</Link>
