@@ -2,11 +2,18 @@ import { useState, useEffect } from 'react';
 import { ArrowUpDown, ArrowDownUp } from 'lucide-react';
 import CategoryCard from './CategoryCard';
 import type { Transaction } from '../types/types';
+import Pagination from './Pagination';
 
 function TransactionsTable({transactions}: {transactions: Transaction[]}) {
     const [sorted, setSorted] = useState(transactions)
     const [isAscendingAmount, setIsAscendingAmount] = useState(false)
     const [isAscendingDate, setIsAscendingDate] = useState(false)
+    const [itemsPerPage, setItemsPerPage] = useState(18)
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const indexOfLastTransaction = currentPage * itemsPerPage;
+    const indexOfFirstTransaction = indexOfLastTransaction - itemsPerPage;
+    const currentTransactions = sorted.slice(indexOfFirstTransaction, indexOfLastTransaction);
 
     useEffect(() => {
       setSorted(transactions);
@@ -53,7 +60,7 @@ function TransactionsTable({transactions}: {transactions: Transaction[]}) {
                 </tr>
             </thead>
             <tbody>
-                {sorted.map((transaction) =>
+                {currentTransactions.map((transaction) =>
                     <tr key={transaction.id} className='border-y border-slate-200 hover:bg-blue-100'>
                         <td>{transaction.date}</td>
                         <td>{transaction.description}</td>
@@ -62,6 +69,9 @@ function TransactionsTable({transactions}: {transactions: Transaction[]}) {
                     </tr>
                 )}
             </tbody>
+            <tfoot>
+                <Pagination itemsPerPage={itemsPerPage} totalItems={sorted.length} currentItem={currentPage} setCurrentItem={setCurrentPage} />
+            </tfoot>
         </table>
     );
 }

@@ -18,20 +18,20 @@ const Pagination = (
         pageNumbers.push(i);
     }
 
-    function handlePagination(event: React.MouseEvent<HTMLButtonElement>, number: number) {
+    function handlePagination(event: React.MouseEvent<HTMLAnchorElement>, number: number) {
         event.preventDefault();
         setCurrentItem(number);
     }
 
     return (
-        <nav >
-            <ul className="flex justify-between">
+        <nav>
+            <ul className="flex gap-2 mt-8">
                 {pageNumbers.map(number => {
                     return (
-                        <li key={number} className="rounded bg-indigo-500 px-2">
+                        <li key={number} className={`${number === currentItem ? "bg-indigo-500" : "bg-white"} rounded border border-indigo-500 px-2`}>
                             <a  onClick={(e) => handlePagination(e, number)}
                                 href="!#" 
-                                className={number === currentItem ? "text-white underline" : ""}
+                                className={number === currentItem ? "text-white" : "text-indigo-500"}
                             >
                                 {number}
                             </a>
@@ -39,7 +39,7 @@ const Pagination = (
                     )
                 })}
             </ul>
-            Page <span className="text-blue-500">{currentItem}</span> of {pageCount}.
+            <p className="mt-4">Page <span className="text-indigo-500">{currentItem}</span> of {pageCount}.</p>
         </nav>
     )
 }

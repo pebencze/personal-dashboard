@@ -17,7 +17,7 @@ function sleep(milliseconds: number): Promise<void> {
 
 function PaginationTestView() {
     const [posts, setPosts] = useState<Post[]>([]);
-    const [postsPerPage, setItemsPerPage] = useState(5);
+    const [postsPerPage, setPostsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(false);
 
