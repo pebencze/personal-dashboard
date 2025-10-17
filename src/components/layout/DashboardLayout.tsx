@@ -5,6 +5,8 @@ import Sidebar from "../Sidebar"
 import Card from "../Card"
 import TransactionsView from "../TransactionsView"
 import CategoryBreakdown from "../CategoryBreakdownView"
+import { Pagination } from "@mui/material"
+import PaginationTestView from "../PaginationTestView"
 
 function DashboardLayout(){
     const sidebarRef = useRef<HTMLDivElement>(null)
@@ -76,6 +78,7 @@ function DashboardLayout(){
                     <Route index element={<Card title="Overview">Content here</Card>}></Route>
                     <Route path="/transactions" element={<TransactionsView />}></Route>
                     <Route path="/category-breakdown" element={<CategoryBreakdown />}></Route>
+                    <Route path="/test-pagination" element={<PaginationTestView />}></Route>
                 </Routes>
             </div>
         </div>

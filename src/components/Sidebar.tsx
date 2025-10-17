@@ -41,6 +41,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SideBarProps>(({isBeingReset, i
                 <Link className="hover:underline" to="/">Overview</Link>
                 <Link className="hover:underline" to="/transactions">Transactions</Link>
                 <Link className="hover:underline" to="/category-breakdown">Category Breakdown</Link>
+                <Link className="hover:underline" to="/test-pagination">Pagination Test</Link>
                 <Link to="#">...</Link>
             </div>
         </div>        
