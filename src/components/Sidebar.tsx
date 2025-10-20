@@ -3,7 +3,6 @@ import {CircleX } from "lucide-react"
 import React from "react"
 import { Link } from "react-router-dom"
 
-
 interface SideBarProps{
     isBeingReset: boolean;
     isBeingCollapsed: boolean;

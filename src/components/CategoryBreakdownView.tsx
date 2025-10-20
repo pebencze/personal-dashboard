@@ -1,5 +1,6 @@
 
 import CategoryPieChart from "./CategoryPieChart"
+import CategoryBarChart from "./CategoryBarChart"
 import Card from "./Card"
 import { monthlyBudget, expenseCategories } from "../data/mockData"
 import type { ExpenseCategory, Transaction } from "../types/types"
@@ -9,7 +10,7 @@ import { useState, useMemo } from "react";
 import Filter from "./Filter";
 import type { FilterOption } from "./Filter";
 
-function getCategories(transactions: Transaction[]): ExpenseCategory[] {
+export function getCategories(transactions: Transaction[]): ExpenseCategory[] {
     let spendingsPerCategory = new Map<string, number>()
     
     transactions
@@ -71,6 +72,7 @@ function CategoryBreakdown(){
         <Card title="Categories" filter={<Filter handleSubmit={handleSubmit} handleClear={handleClear} filterOptions={filterOptions}/>}>
             <CategoryTable categories={categories} />
             <CategoryPieChart categories={categories} />
+            <CategoryBarChart />
         </Card>
     )
 }
